@@ -8,7 +8,8 @@ for details of program usage.  A few extracts appear below.
 a given angle range.  At present it doesn't correctly compute center
 to center distance so a debug var ccManualDist is used to set that
 distance.  At present it doesn't correctly handle mesh cases other
-than both tooth counts being odd.
+than both tooth counts being odd.  At present its path to GFgear.scad
+needs to be manually edited.
 
 
 Brief Extracts from 1gear.py comments:
