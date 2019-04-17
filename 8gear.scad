@@ -14,10 +14,13 @@ armHubDiam=15; // [1:100]
 armToeDiam=11; // [1:100]
 // Hub to Toe Distance
 HubToToe=33; // [1:200]
+// Manual setting for center to center Distance
+ccManualDist=38.2; // [1:200]
 
 use </home/j-waldby/pcb/3D/gearLegs/test-legs/GFgear.scad>
 
 centerToCenter=circPitch*(centralTeeth+edgeTeeth)/(2*pi);
+
 union() {
   color("Blue",0.5) {
     rotate(a = (abs($t*2 - 1)-1)*tAngle) {
@@ -26,7 +29,9 @@ union() {
       }
     }
   }
-  translate([38.2,0,0]) {
+  //translate([centerToCenter,0,0]) {
+  //translate([circPitch*(centralTeeth+edgeTeeth)/(2*pi),0,0]) {
+  translate([ccManualDist,0,0]) {
     rotate(a = (1-abs($t*2 - 1))*tAngle*centralTeeth/edgeTeeth) {
       union(){
 	linear_extrude(center = true, height = 6) {

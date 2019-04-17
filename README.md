@@ -1,7 +1,16 @@
-This directory contains a program, 1gear.py, that writes a .scad file,
-tooth.scad, which animates a gear rotation back and forth in a given
-angle range.  See comments in 1gear for details of program usage.
-Here are a few extracts from the comments there:
+This directory contains two programs:
+
+1gear.py writes a .scad file, tooth.scad, which animates a gear
+rotation back and forth in a given angle range.  See comments in 1gear
+for details of program usage.  A few extracts appear below.
+
+8gear.scad animates the meshed rotation of two gears back and forth in
+a given angle range.  At present it doesn't correctly compute center
+to center distance so a debug var ccManualDist is used to set that
+distance.
+
+
+Brief Extracts from 1gear.py comments:
 
   When this program runs, it writes a file, tooth.scad.  Open
   tooth.scad in program openscad.  Click View / Animate.  Below the 3D
@@ -16,3 +25,4 @@ Here are a few extracts from the comments there:
 
   This program accepts two optional command-line parameters: (1) Gear
   thickness, mm, and (2) `Circular pitch` of gear [...]
+
