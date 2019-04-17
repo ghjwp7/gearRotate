@@ -7,7 +7,8 @@ for details of program usage.  A few extracts appear below.
 8gear.scad animates the meshed rotation of two gears back and forth in
 a given angle range.  At present it doesn't correctly compute center
 to center distance so a debug var ccManualDist is used to set that
-distance.
+distance.  At present it doesn't correctly handle mesh cases other
+than both tooth counts being odd.
 
 
 Brief Extracts from 1gear.py comments:
