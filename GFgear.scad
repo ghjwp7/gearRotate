@@ -2,13 +2,18 @@
 // It is licensed under the Creative Commons - GNU GPL license.
 // © 2010 by GregFrost
 
+// 17 Apr 2019: JIW add teeth_skip=0 param, and change
+// [for(i=[0:num_teeth-1] to [for(i=[0:num_teeth-1-teeth_skip]
+// to make a partially-toothed gear
+
 module gear(
 num_teeth=8,
 circular_pitch=10,
 pressure_angle=28,
 involute_facets=7,
 clearance=0.5,
-backlash=0.5)
+backlash=0.5,
+teeth_skip=0)
 {   
     root_radius=root_radius(num_teeth,circular_pitch,clearance);
     base_radius=base_radius(num_teeth,circular_pitch,pressure_angle);
@@ -49,7 +54,7 @@ backlash=0.5)
     tooth=concat(first_tooth_half,second_tooth_half);
 
     // Create all teeth.
-    gear_points=flatten([for(i=[0:num_teeth-1]) rotate_list(-360/num_teeth*i,tooth)]);
+    gear_points=flatten([for(i=[0:num_teeth-1-teeth_skip]) rotate_list(-360/num_teeth*i,tooth)]);
     polygon(gear_points);
 }
 
