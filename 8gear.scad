@@ -24,8 +24,9 @@ $fn=20;
 use <GFgear.scad>
 
 centerToCenter = circPitch*(sunTeeth+edgeTeeth)/(2*PI);
-// Use GFgear's outside_radius() function for sun's tip-diameter
+// Use GFgear functions for sun's tip diam and edge root diameters
 sunDiameter = 2*outside_radius(sunTeeth, circPitch);
+rootDiameter = 2*(pitch_radius(edgeTeeth, circPitch)-dedendum(circPitch));
 
 // Convert time to a back-and-forth rotation-angle, with dt % dwell
 // times at min and max swings
@@ -36,19 +37,20 @@ function roAngle() = roDwell(40);
 function antiAngle() = sweepAngle*sunTeeth/edgeTeeth;
 
 module makeArm(mainAngle=0) {
+  HubDiam = min(armHubDiam, rootDiameter);
   translate([centerToCenter*cos(mainAngle),centerToCenter*sin(mainAngle),-armThick/2]) {
     rotate(a = mainAngle+roAngle()*sunTeeth/edgeTeeth) {
       union(){
 	rotate(a = (1-edgeTeeth%2) * 180/edgeTeeth) { // Make teeth mesh
 	  linear_extrude(center=false, height=armThick) {
-	    gear(circular_pitch = circPitch, num_teeth = edgeTeeth, teeth_skip=edgeTeeth/2-2);
+	    gear(circular_pitch = circPitch, num_teeth = edgeTeeth, teeth_skip=(edgeTeeth-3)/2);
 	  }
 	}
 	linear_extrude(center=false, height=armThick) {
 	  difference() {
 	    hull() {
 	      translate([HubToToe,0,0]) circle(d=armToeDiam);
-	      circle(d=armHubDiam);
+	      circle(d=HubDiam);
 	    }
 	    translate([centerToCenter*sin(antiAngle()-90),centerToCenter*cos(antiAngle()-90),0]) circle(d=sunDiameter);
 	  }
