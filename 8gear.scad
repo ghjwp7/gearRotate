@@ -30,7 +30,7 @@ rootDiameter = 2*(pitch_radius(edgeTeeth, circPitch)-dedendum(circPitch));
 
 // Convert time to a back-and-forth rotation-angle, with dt % dwell
 // times at min and max swings
-function roDwell(dt) = (max(dt/400, min(1-dt/400, (1-abs($t*2 - 1))))-0.1)*sweepAngle/(1-dt/200);
+function roDwell(dt) = (max(dt/400, min(1-dt/400, (1-abs($t*2 - 1))))-dt/400)*sweepAngle/(1-dt/200);
 // Convert time to angle, with 40% dwell
 function roAngle() = roDwell(40);
 // Anti-collision-cutout angle is sweepAngle * gear ratio
