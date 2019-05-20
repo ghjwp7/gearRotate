@@ -1,12 +1,8 @@
-This directory contains two programs:
+This directory contains some programs:
 
 1gear.py writes a .scad file, tooth.scad, which animates a gear
 rotation back and forth in a given angle range.  See comments in 1gear
 for details of program usage.  A few extracts appear below.
-
-8gear.scad animates the meshed rotation of some sun-and-planet gears
-back and forth in an angle range.  Planets have arms of specified size
-and shape.  Red ring denotes a 5" diameter.
 
 
 Brief Extracts from 1gear.py comments:
